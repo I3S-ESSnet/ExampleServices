@@ -15,6 +15,7 @@ namespace StatisticalPrograms.Data
 
     public class StatisticalProgramRepository : IStatisticalProgramRepository
     {
+        // fake it 'til you make it
         private static List<StatisticalProgram> _instance;
 
         public IEnumerable<StatisticalProgram> GetAll()
