@@ -11,19 +11,24 @@ This repository is created to help developers and architects view examples of fe
 
 ### Starting point
 
+![Scenario 1 start](./resources/scenario_1_start.jpg)
+
 We start with two services (CAWI, ErrorLocalization). The services or application do not know of each other, each has implemented its own implementation of code lists.
+
+### Goals
+
+![Scenario 2 start](./resources/scenario_1_goal.png)
+To follow principle of metadata driven systems, we see that each of the two services needs to manage the same meta data. By extracting this function we can make each service be more accomodated towards single responsibility.
 
 ### Thought process
 
-tbc...
+Taking small steps and adding value incrementally. Trying not to overreach in our examples we strafe for taking small logical steps to evolve our services. This is why in our examples might take tideous small steps in advancing the architecture of the system.
 
-### Goal
+Pros and Cons; Having a disconnected state of applications the manual labour to keep data up to date is high
 
-To follow principle of metadata driven systems, we see that each of the two services needs to manage the same meta data. By extracting this function we can make each service be more accomodated towards single responsibility.
+### Result
 
-### Pros and Cons
-
-Having a disconnected state of applications the manual labour to keep data up to date is high
+By extracting logic and 
 
 ## Scenario 2 - Context Aware
 
