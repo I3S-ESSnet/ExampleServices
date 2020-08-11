@@ -42,9 +42,15 @@ By extracting a service for handling meta data regarding Statistical programs we
 
 ## Scenario 3
 
+![Scenario 3 overview](./resources/scenario_3_mockup.jpg)
+
 ## Scenario 4
 
+![Scenario 4 overview](./resources/scenario_4_mockup.jpg)
+
 ## Scenario 5
+
+![Scenario 5 overview](./resources/scenario_5_mockup.jpg)
 
 ###############################################
 
