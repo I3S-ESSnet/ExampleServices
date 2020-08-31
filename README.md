@@ -1,55 +1,55 @@
 # ExampleServices
 
-starting point, describe the repository, its purpose, how to view examples
+`starting point, describe the repository, its purpose, how to view examples`
 
 This repository is created to help developers and architects view examples of features applied into services. The scenarios describe different states your environment could be in, and examples how to gain a more recommended state using architecture described in CSPA.
 
 ## Scenario 1 - From disconnected services to connected metadata driven
 
-![Scenario 1 overview](./resources/scenario_1_mockup.jpg)
--todo, replace with graphics
-
-### Starting point
+### S1 Starting point
 
 ![Scenario 1 start](./resources/scenario_1_start.jpg)
 
-We start with two services (CAWI, ErrorLocalization). The services or application do not know of each other, each has implemented its own implementation of code lists.
+We start with two services (CAWI, ErrorLocalization). CAWI is a web based tool for taking surveys. ErrorLocalization is a service that can flag answers as faulty based on a rule set. The services or application do not know of each other, each has implemented its own implementation of code lists. Therefor each service need logic for handling of the codes lists used. The possibility of 
+Code is found here: [Code Scenario 1](./Scenario_1)
 
-### Goals
+### S1 Goals
 
-![Scenario 2 start](./resources/scenario_1_goal.png)
-To follow principle of metadata driven systems, we see that each of the two services needs to manage the same meta data. By extracting this function we can make each service be more accomodated towards single responsibility.
+![Scenario 1 Goal](./resources/scenario_1_goal.png)
 
-### Thought process
+To follow principle of metadata driven systems, we see that each of the two services needs to manage the same meta data. By extracting this function we can make each service be more accomodated towards single responsibility. Thus lowering the manual labour keeping two systems up to date with the same data.
 
-Taking small steps and adding value incrementally. Trying not to overreach in our examples we strafe for taking small logical steps to evolve our services. This is why in our examples might take tideous small steps in advancing the architecture of the system.
+### S1 Thought process
 
-Pros and Cons; Having a disconnected state of applications the manual labour to keep data up to date is high
+Taking small steps and adding value incrementally. Trying not to overreach in our examples we strafe for taking small logical steps to evolve our services. This is why in our examples might take tideous small steps in advancing the architecture of the system. By extracting the handling of metadata to separate service we create a single point of thruth regarding data consistency.
 
-### Result
+### S1 Result
 
-By extracting logic and 
+Having a disconnected state of applications the manual labour to keep data up to date is high. The risk of poor data integrity is high. By extracting logic of manupilating the codelist metadata we have lowered the cost of keeping data up to date. We have now a masterdata repository who is owner of its data.
 
 ## Scenario 2 - Context Aware
 
+`TBC`
 We have the three services CAWI, CodeList, and ErrorLoc but we have identified they use the same meta information in some regard. The dupication of information is therefore a fact. By making the services context aware we can extract logic regarding setting up dupicate meta information in the applications.
 
 ![Scenario 2 overview](./resources/scenario_2_mockup.jpg)
 
-### Starting point
+### S2 Starting point
 
 Three services; CAWI, CodeList and ErrorLoc
 
-### Goal
+### S2 Goals
 
 By extracting a service for handling meta data regarding Statistical programs we can minimize the duplication of manual setup within each service.
 
-
-## Scenario 3
+## Scenario 3 - Revisiting integration pattern
 
 ![Scenario 3 overview](./resources/scenario_3_mockup.jpg)
 
-## Scenario 4
+### S3 Starting point
+
+
+## Scenario 4 - Containers
 
 ![Scenario 4 overview](./resources/scenario_4_mockup.jpg)
 
