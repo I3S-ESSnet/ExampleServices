@@ -48,7 +48,7 @@ Having a disconnected state of applications the manual labour to keep data up to
 `TBC`
 We have the three services CAWI, CodeList, and ErrorLoc but we have identified they use the same meta information in some regard. The dupication of information is therefore a fact. By making the services context aware we can extract logic regarding setting up dupicate meta information in the applications.
 
-![Scenario 2 overview](./resources/scenario_2_mockup.jpg)
+![Scenario 2 overview](./resources/tbd.jpg)
 
 #### S2 Starting point
 
@@ -60,39 +60,15 @@ By extracting a service for handling meta data regarding Statistical programs we
 
 ### Scenario 3 - Revisiting integration pattern
 
-![Scenario 3 overview](./resources/scenario_3_mockup.jpg)
+![Scenario 3 overview](./resources/tbd.jpg)
 
 #### S3 Starting point
 
 
-### Scenario 4 - Containers
+### Scenario 4 - Containers, multiple environments
 
-![Scenario 4 overview](./resources/scenario_4_mockup.jpg)
+![Scenario 4 overview](./resources/tbd.jpg)
 
-### Scenario 5
+### Scenario 5, Design driven information flow
 
-![Scenario 5 overview](./resources/scenario_5_mockup.jpg)
-
-###############################################
-
-## Description of services within code book
-
-### StatisticalPrograms
-
-Main objective of this service is to hold metadata regarding the statistical programs. It is the owner of this data.
-
-### CAWI
-
-The service is the web user interface to collect statistical data from the respondents
-
-### Code Lists
-
-Service for maintaining and setting up code lists
-
-### Error Localizations
-
-Service that runs validation on datasets
-
-### Manual Editing
-
-Used for users editing respondent data in need for revising
+![Scenario 5 overview](./resources/tbd.jpg)
