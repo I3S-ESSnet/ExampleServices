@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 namespace CAWI.Ui.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class SurveyController : ControllerBase
     {
         private readonly ILogger<SurveyController> _logger;

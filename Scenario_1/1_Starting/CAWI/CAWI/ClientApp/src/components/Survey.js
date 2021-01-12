@@ -25,27 +25,7 @@ export class Survey extends Component {
                             )}                            
                         </select>
                     </td>)}
-            </div>
-            // <table className='table table-striped' aria-labelledby="tabelLabel">
-            //     <thead>
-            //         <tr>
-            //             <th>Date</th>
-            //             <th>Temp. (C)</th>
-            //             <th>Temp. (F)</th>
-            //             <th>Summary</th>
-            //         </tr>
-            //     </thead>
-            //     <tbody>
-            //         {questions.map(forecast =>
-            //             <tr key={forecast.date}>
-            //                 <td>{forecast.date}</td>
-            //                 <td>{forecast.temperatureC}</td>
-            //                 <td>{forecast.temperatureF}</td>
-            //                 <td>{forecast.summary}</td>
-            //             </tr>
-            //         )}
-            //     </tbody>
-            // </table>
+            </div>            
         );
     }
 
@@ -56,15 +36,15 @@ export class Survey extends Component {
 
         return (
             <div>
-                <h1 id="tabelLabel" >Survey</h1>
-                <p>This component demonstrates fetching data from the server.</p>
+                <h3 id="tabelLabel" >Survey</h3>
+                <p>This is the fascinating Weather Survey! Please respond to the following questions:</p>
                 {contents}
             </div>
         );
     }
 
     async populateQuestions() {
-        const response = await fetch('survey');
+        const response = await fetch('api/survey');
         const data = await response.json();
         this.setState({ questions: data, loading: false });
     }
