@@ -6,26 +6,28 @@ export class Survey extends Component {
     constructor(props) {
         super(props);
         this.state = { questions: [], isLoading: true };
-
     }
+    
     componentDidMount() {
         this.populateQuestions();
     }
 
     static renderQuestionTable(questions) {
         return (
-            <div>
+
+            <table>
                 {/* <form></form> */}
                 {questions.map(question =>
-                    <td>
-                        <h1>{question.caption}</h1>
-                        <select>
+                    <tr>
+                        <td>{question.caption}</td>
+                        <td><select>
                             {question.options.map(option =>
-                            <option value="{option.value}">{option.caption}</option>    
-                            )}                            
+                                <option value="{option.value}">{option.caption}</option>
+                            )}
                         </select>
-                    </td>)}
-            </div>            
+                        </td>
+                    </tr>)}
+            </table>
         );
     }
 
