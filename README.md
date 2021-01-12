@@ -1,6 +1,6 @@
 # ExampleServices
 
-`starting point, describe the repository, its purpose, how to view examples`
+`readme should explain how to view examples, its purpose, starting point, describe the repository`
 
 This repository is created to help developers and architects view examples of features applied into services. The scenarios describe different states your environment could be in, and examples how to gain a more recommended state using architecture described in CSPA.
 
@@ -8,7 +8,7 @@ Taking small steps and adding value incrementally. Trying not to overreach in ou
 
 ## Development environment
 
-The first example services is using C# for the web api and for front end React.js.
+The first example services is using .NET Core 3.1, and is written in C# for the web api and for front end ReactJS.
 
 Visual Code is used together with Node.js and npm (node package manager)
 
@@ -16,8 +16,10 @@ Visual Code can be downloaded here: <https://code.visualstudio.com/download>
 
 Node.js is found here : <https://nodejs.org/en/download/>
 
+Together with .NET Core 3.1 SDK: <https://dotnet.microsoft.com/download/dotnet-core/3.1>
+
 ## Scenarios
 
-In each scenario we try to show a current state of a system, an identified flaw, and how we can amend this with a remodelling of the architecture.
+In each scenario we show a current state of a system, an identified flaw, and how we can amend this with a remodelling of the architecture.
 
 The different scenarios is explained in [Scenarios.md](./scenarios.md)
