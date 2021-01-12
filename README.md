@@ -8,13 +8,15 @@ Taking small steps and adding value incrementally. Trying not to overreach in ou
 
 ## Development environment
 
-The first example services is using C# for the web api and for front end React.js.
+The first example services is using C# for the web api and for front end ReactJS.
 
 Visual Code is used together with Node.js and npm (node package manager)
 
 Visual Code can be downloaded here: <https://code.visualstudio.com/download>
 
 Node.js is found here : <https://nodejs.org/en/download/>
+
+Together with .NET Core 3.1 SDK: <https://dotnet.microsoft.com/download/dotnet-core/3.1>
 
 ## Scenarios
 
