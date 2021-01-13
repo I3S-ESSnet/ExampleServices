@@ -1,4 +1,4 @@
-# Errorlocalization service
+# ErrorLocalization service
 
 Simple service for error localization (under construction)
 
