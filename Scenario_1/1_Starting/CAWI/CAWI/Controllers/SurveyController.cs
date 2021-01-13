@@ -42,7 +42,6 @@ namespace CAWI.Ui.Controllers
         [HttpPost]
         public IEnumerable<AnswerValidation> PostAnswers(IEnumerable<Answer> answers)
         {
-            _logger.LogDebug(answers);
             return answers.ToList().Select(x => new AnswerValidation()
                 {Variable = x.Variable, Value = x.Value, Result = "Plausable"});
         }
