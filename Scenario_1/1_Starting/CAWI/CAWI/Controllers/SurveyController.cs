@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using CAWI.Ui.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -37,6 +39,13 @@ namespace CAWI.Ui.Controllers
                     Options = CreateWeatherOptions()
                 }
             };
+        }
+        
+        [HttpPost]
+        public IEnumerable<AnswerValidation> PostAnswers(IEnumerable<Answer> answers)
+        {
+            return answers.ToList().Select(x => new AnswerValidation()
+                {Variable = x.Variable, Value = x.Value, Result = "Plausable"});
         }
 
         private IEnumerable<Option> CreateWeatherOptions()
