@@ -12,10 +12,12 @@ export class Survey extends Component {
             isLoading: true,
             hasResult: false,
             validationResult: [],
-            isToggleOn: true
+            isToggleOn: true,
+            country: null,
+            weather: null,
+            answers: []
         };
-        this.postAnswers = this.postAnswers.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -23,12 +25,27 @@ export class Survey extends Component {
         this.populateQuestions();
     }
 
-    handleChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value });
-
+    locateAnswer(answer, variable) {
+        return answer.variable == variable;
     }
 
-    static renderQuestionTable(questions) {
+    handleChange = (event) => {
+        const updatedAnswer = { variable: event.target.name, value: event.target.value };        
+        const elementsIndex = this.state.answers.findIndex(element => element.variable == updatedAnswer.variable )        
+        let newAnswers = [...this.state.answers];
+        
+        if(elementsIndex >= 0)
+        {
+            newAnswers[elementsIndex] = updatedAnswer;            
+        }
+        else{
+            newAnswers.push(updatedAnswer)
+        }
+
+        this.setState({answers: newAnswers});        
+    }
+
+    static renderQuestionTable(questions) {        
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
@@ -52,37 +69,16 @@ export class Survey extends Component {
         );
     }
 
-    handleClick() {
-        this.setState(state => ({
-            isToggleOn: !state.isToggleOn
-        }));
-    }
-
-    //extract validation result to its own component
-    static renderResultTable(validationResult) {
-        return (
-            <table>
-                <tbody>
-                    {validationResult.map(result =>
-                        <tr key={result.variable}>
-                            <td>{result.variable}</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
-        )
-    }
-
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
             : <Questions
                 handleSubmit={this.handleSubmit}
                 handleChange={this.handleChange}
-                questions={this.state.questions}/>;
+                questions={this.state.questions} />;
 
         let surveyResult = this.state.hasResult
-            ? <ValidationResult response={this.state.validationResult} /> //Survey.renderResultTable(this.state.validationResult)
+            ? <ValidationResult response={this.state.validationResult} />
             : <p><em>No answer submitted</em></p>;
 
         return (
@@ -91,8 +87,8 @@ export class Survey extends Component {
                 <p>This is the fascinating Weather Survey! Please respond to the following questions:</p>
                 {contents}
                 <div>
+                    <br/>
                     {surveyResult}
-                    {this.state.Weather}
                 </div>
             </div>
         );
@@ -104,50 +100,18 @@ export class Survey extends Component {
         this.setState({ questions: data, loading: false });
     }
 
-    postAnswers(event) {
-        //redundant, trouble shooting
-        alert('A name was submitted: ' + this.state.value);
-        event.preventDefault();
-
-        // const requestOptions = {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify({ title: 'React POST Request Example' })
-        // };
-        this.setState({ validationResult: "test", hasResult: true });
-        // fetch('api/survey', requestOptions)
-        //     .then(response => response.json())
-        //     .then(data => this.setState({ validationResult: data, hasResult: true }));
-        event.preventDefault();
-    }
-
     handleSubmit = (event) => {
-        //current state: trouble shooting!
-
-        alert('A form was submitted: ' + this.state);
-
-        // fetch('api/survey', {
-        //     method: 'POST',
-        //     // We convert the React state to JSON and send it as the POST body
-        //     // body: JSON.stringify(this.state)
-        //     body: [{variable: "weather", value: "fog"}]
-        // }).then(function (response) {
-        //     console.log(response)
-        //     return response.json();
-        // });
-
+        console.log(this.state.answers);
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify([{ variable: "weather", value: "fog" }])
+            body: JSON.stringify(this.state.answers)
         };
-        // this.setState({ validationResult: "test", hasResult: true });
+
         fetch('api/survey', requestOptions)
             .then(response => response.json())
-            .then(data => console.log(data));
-        // .then(data => this.setState({ validationResult: data, hasResult: true }));
+            .then(data => { this.setState({ validationResult: data, hasResult: true }) });
 
-        // this.setState({ validationResult: "debug", hasResult: true });
         event.preventDefault();
     }
 

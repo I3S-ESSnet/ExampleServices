@@ -14,6 +14,8 @@ export class ValidationResult extends Component {
                     {this.props.response.map(result =>
                         <tr key={result.variable}>
                             <td>{result.variable}</td>
+                            <td>{result.value}</td>
+                            <td>{result.result}</td>
                         </tr>
                     )}
                 </tbody>
