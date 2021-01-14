@@ -7,8 +7,8 @@ export class Home extends Component {
     return (
       <div>
         <h1>Welcome to CAWI!</h1>
-        <p>This site is made for collecting data for the survey of XYZ.</p>
-        <p>Login to register your data</p>
+        <p>This site is made for collecting data for the European weather survey.</p>
+        <p></p><a href='./survey'>Visit survey to start register your data</a>
       </div>
     );
   }
