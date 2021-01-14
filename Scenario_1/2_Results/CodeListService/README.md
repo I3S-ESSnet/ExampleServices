@@ -19,4 +19,15 @@ For now, the only real endpoint is http://0.0.0.0:5010/countries
 
 ### Docker
 
-...
+First build the image:
+
+```
+cd /path/to/CodeListService/
+docker build -t codelistservice:latest .
+```
+
+Then run:
+
+```
+docker run -d -p 5010:5010 codelistservice
+```
