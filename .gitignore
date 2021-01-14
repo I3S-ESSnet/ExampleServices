@@ -260,3 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 *.vssettings
+/Scenario_1/2_Results/ErrorLocalization/nbactions.xml
+/Scenario_1/2_Results/ErrorLocalization/nb-configuration.xml
