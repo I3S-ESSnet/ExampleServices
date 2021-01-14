@@ -19,7 +19,7 @@ import ninja.i3s.example.errorlocalization.logic.ErrorlocalizationValidation;
 @RestController
 public class ErrorlocalizationController {
 
-  @GetMapping("/validate")
+  @PostMapping("/api/validate")
   List<ErrorlocalizationValidationError> all(@RequestParam(value = "country") String country,
   @RequestParam(value = "weather") String weather) {
     
