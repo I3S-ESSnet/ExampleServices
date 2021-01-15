@@ -12,10 +12,10 @@ export class ValidationResult extends Component {
             <table>
                 <tbody>
                     {this.props.response.map(result =>
-                        <tr key={result.variable}>
-                            <td>{result.variable}</td>
+                        <tr key={result.errorNumber}>
+                            <td>{result.errorNumber}</td>
                             <td>{result.value}</td>
-                            <td>{result.result}</td>
+                            <td>{result.errorDescription}</td>
                         </tr>
                     )}
                 </tbody>
