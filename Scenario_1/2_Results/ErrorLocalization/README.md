@@ -2,13 +2,13 @@
 
 Simple service for error localization (under construction)
 
-To build 
+To build the application
 
 ```
 mvn clean install
 ```
 
-To package as a Docker container:
+To package and build the application as a Docker container:
 
 ```
 docker build -t i3sessnet/errorlocalization .
