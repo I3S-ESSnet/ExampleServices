@@ -1,7 +1,11 @@
 package ninja.i3s.example.errorlocalization.logic;
 
-import java.net.InetSocketAddress;
-import java.net.ProxySelector;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
+import com.google.common.collect.Lists;
 import java.net.http.HttpResponse;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -10,6 +14,9 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.time.Duration;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import ninja.i3s.example.errorlocalization.bean.Country;
 
 import ninja.i3s.example.errorlocalization.bean.ErrorlocalizationValidationError;
 
@@ -27,27 +34,50 @@ public class ErrorlocalizationValidation {
                 .build();
 
         HttpRequest request1 = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:5010"))
+                .uri(URI.create("http://localhost:5010/countries"))
                 .build();
 
+        ObjectMapper mapper = new ObjectMapper();
+        Country[] countries = null;
+
+        HttpResponse<String> response1 = null;
+
         try {
-            HttpResponse<String> response1;
+
             response1 = (HttpResponse<String>) client.newBuilder()
                     .build()
                     .send(request1, BodyHandlers.ofString());
-            System.out.println(response1.body());
+            
+              String response = response1.body();
+
+              countries = mapper.readValue(response, Country[].class);     
+
         } catch (Exception ex) {
             error = new ErrorlocalizationValidationError("Codelist service not available", "000", ex.getLocalizedMessage());
             errors.add(error);
         }
-
-        //Rule 1 : check if the country is in the allowed list      
-        error = new ErrorlocalizationValidationError("country not allowed", "001", "Country not in the list");
-        errors.add(error);
+        
+        //Rule 1 : check if the country is in the allowed list   
+        boolean found = false;        
+        for (int i=1;i<countries.length;i++) {
+           if (country.equalsIgnoreCase(countries[i].country)) {
+               found = true;
+               break;
+           }
+        }
+        if (!found) {
+         error = new ErrorlocalizationValidationError("country not allowed", "001", "Country not in the list");
+         errors.add(error);
+        }
 
         //Rule 2 : check if the weather allowed for the counrty
-        error = new ErrorlocalizationValidationError("weather not allowed", "002", "weather not allowed");
-        errors.add(error);
+        error = new ErrorlocalizationValidationError(weather + " weather not allowed for " + country, "002", "weather not allowed");
+        if (weather.equals("sunny") && country.equalsIgnoreCase("sweden") ||
+            weather.equals("sunny") && country.equalsIgnoreCase("france") ||
+            weather.equals("snowy") && country.equalsIgnoreCase("italy")  ||  
+            weather.equals("snowy") && country.equalsIgnoreCase("portugal")     
+                ) 
+         errors.add(error);
 
         return errors;
     }

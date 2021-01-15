@@ -17,5 +17,5 @@ docker run i3sessnet/errorlocalization -p 8080:8080
 
 Test service
 ```
-curl -v localhost:8080/validate/
+curl -v localhost:8080/api/validate/
 ```
