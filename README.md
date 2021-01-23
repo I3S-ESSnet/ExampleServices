@@ -1,4 +1,4 @@
-# ExampleServices
+# Example Services
 
 `readme should explain how to view examples, its purpose, starting point, describe the repository`
 
@@ -14,7 +14,7 @@ Visual Code is used together with Node.js and npm (node package manager)
 
 Visual Code can be downloaded here: <https://code.visualstudio.com/download>
 
-Node.js is found here : <https://nodejs.org/en/download/>
+Node.js is found here: <https://nodejs.org/en/download/>
 
 Together with .NET Core 3.1 SDK: <https://dotnet.microsoft.com/download/dotnet-core/3.1>
 
@@ -22,4 +22,4 @@ Together with .NET Core 3.1 SDK: <https://dotnet.microsoft.com/download/dotnet-c
 
 In each scenario we show a current state of a system, an identified flaw, and how we can amend this with a remodelling of the architecture.
 
-The different scenarios is explained in [Scenarios.md](./scenarios.md)
+The different scenarios are explained in [Scenarios.md](./Scenarios.md).
