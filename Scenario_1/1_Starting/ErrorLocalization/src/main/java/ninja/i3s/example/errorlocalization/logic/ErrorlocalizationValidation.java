@@ -16,12 +16,22 @@ public class ErrorlocalizationValidation {
         ArrayList<ErrorlocalizationValidationError> errors = new ArrayList<ErrorlocalizationValidationError>();
 
         // Read countries from file
-        List<Country> countries = CountryParser.parse();
+        
 
-        List<String> countryCodes = countries.stream().map(x -> x.getCode()).collect((Collectors.toList()));
+        
+        // List<Country> countries = EuCountry.parse();
+
+        // List<String> countryCodes = countries.stream().map(x -> x.getCode()).collect((Collectors.toList()));
 
         //Rule 1 : check if the country is in the allowed list              
-        if (!countryCodes.contains(country)) {
+        
+        // if (!countryCodes.contains(country)) {
+        //     error = new ErrorlocalizationValidationError("country not allowed", "001", "Country not in the list");
+        //     errors.add(error);
+        // }
+
+        var euCountry = new EuCountry(country);
+        if (!euCountry.isValid()) {
             error = new ErrorlocalizationValidationError("country not allowed", "001", "Country not in the list");
             errors.add(error);
         }
