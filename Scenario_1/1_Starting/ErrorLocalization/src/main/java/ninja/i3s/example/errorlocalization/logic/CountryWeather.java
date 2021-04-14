@@ -17,19 +17,19 @@ public class CountryWeather {
         List<String> validWeather;
         switch (country) {
         case "SE":
-            validWeather = Arrays.asList(new String[] { "Snow ", "Hail" });
+            validWeather = Arrays.asList(new String[] { "Snow", "Hail" });
             break;
-        case "GB": {
-            validWeather = Arrays.asList(new String[] { "Rain","Fog" });
+        case "GB":
+            validWeather = Arrays.asList(new String[] { "Rain", "Fog" });
             break;
-        }
+
         case "IT":
             validWeather = Arrays.asList(new String[] { "Sun" });
             break;
 
-        default: {
-            validWeather = Arrays.asList(new String[] { "Snow ", "Rain", "Sun", "Fog", "Hail", "Cloud" });
-        }
+        default:
+            validWeather = Arrays.asList(new String[] { "Snow", "Rain", "Sun", "Fog", "Hail", "Cloud" });
+
             break;
         }
         return validWeather.contains(weather);
