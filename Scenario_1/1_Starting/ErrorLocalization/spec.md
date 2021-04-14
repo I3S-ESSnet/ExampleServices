@@ -4,7 +4,8 @@ A service that validates answers against a fixed set of rules
 
 POST on `api/validate`
 
-object 
+object
+
 ```json
 {
     weather: string
@@ -17,8 +18,10 @@ object
 As a start the service reads a json-file `code-list.json`
 
 Validations:
+
 * Is country valid (exists in code-list.json)?
 * Validate Weather in Country
+
 ``` Java
     if(country == 'SE')
         {return weather == 'Snow'}
