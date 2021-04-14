@@ -14,26 +14,18 @@ public class ErrorlocalizationValidation {
         ErrorlocalizationValidationError error;
         //Pack response
         ArrayList<ErrorlocalizationValidationError> errors = new ArrayList<ErrorlocalizationValidationError>();
-
-        // Read countries from file
         
-
-        
-        // List<Country> countries = EuCountry.parse();
-
-        // List<String> countryCodes = countries.stream().map(x -> x.getCode()).collect((Collectors.toList()));
-
         //Rule 1 : check if the country is in the allowed list              
-        
-        // if (!countryCodes.contains(country)) {
-        //     error = new ErrorlocalizationValidationError("country not allowed", "001", "Country not in the list");
-        //     errors.add(error);
-        // }
-
+                
         var euCountry = new EuCountry(country);
         if (!euCountry.isValid()) {
             error = new ErrorlocalizationValidationError("country not allowed", "001", "Country not in the list");
             errors.add(error);
+
+            System.out.println(country +" is an invalid EU country");
+        }
+        else{
+            System.out.println(country +" is a valid EU country");
         }
 
         //Rule 2 : check if the weather allowed for the counrty
@@ -42,7 +34,12 @@ public class ErrorlocalizationValidation {
         if (!countryWeather.isValid()) {
             error = new ErrorlocalizationValidationError("weather not allowed", "002", "weather not allowed");
             errors.add(error);
-        }        
+
+            System.out.println(weather +" is an invalid weather within " +country);
+        }
+        else{
+            System.out.println(weather +" is a valid weather within " +country);
+        }
 
         return errors;
     }
