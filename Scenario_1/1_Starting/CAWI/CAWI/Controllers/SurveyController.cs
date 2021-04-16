@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CAWI.Ui.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
@@ -16,13 +17,15 @@ namespace CAWI.Ui.Controllers
     [Route("api/[controller]")]
     public class SurveyController : ControllerBase
     {
+        private readonly IConfiguration _configuration;
         private readonly ILogger<SurveyController> _logger;
         private const string Weather = "weather";
         private const string Country = "country";
-        
-        public SurveyController(ILogger<SurveyController> logger)
+
+        public SurveyController(ILogger<SurveyController> logger, IConfiguration configuration)
         {
             _logger = logger;
+            _configuration = configuration;
         }
 
         [HttpGet]
@@ -48,37 +51,41 @@ namespace CAWI.Ui.Controllers
         [HttpPost]
         public async Task<IEnumerable<Error>> PostAnswers(IEnumerable<Answer> answers)
         {
-            var validationResult = await ValidateAnswers(answers);
+            if (!answers.Any()) return new List<Error>();
             
+            var validationResult = await ValidateAnswers(answers.ToList());
+
             return validationResult;
         }
 
-        public async Task<IEnumerable<Error>> ValidateAnswers(IEnumerable<Answer> answers)
+        public async Task<IEnumerable<Error>> ValidateAnswers(List<Answer> answers)
         {
+
             var country = answers.FirstOrDefault(x => x.Variable.ToLower() == Country);
             var weather = answers.FirstOrDefault(x => x.Variable.ToLower() == Weather);
-            
+
             using (var client = new HttpClient())
             {
                 try
                 {
-                    var uri = "http://localhost:8081" + $"/api/validate?country={country?.Variable}&weather={weather?.Value}";
+                    var uri = _configuration["ErrorLocalization:Url"] + $"/api/validate?country={country?.Value}&weather={weather?.Value}";
+                    Console.WriteLine($"ErrorLocalizationRequest: {uri}");
                     var content = new MultipartFormDataContent
                     {
-                        {new StringContent("country"), country?.Variable},
-                        {new StringContent("weather"), weather?.Variable}
+                        {new StringContent("country"), country?.Value},
+                        {new StringContent("weather"), weather?.Value}
                     };
                     using (var response = await client.PostAsync(uri, content))
                     {
                         var apiResponse = await response.Content.ReadAsStringAsync();
-                        var errors = JsonConvert.DeserializeObject<List<Error>>(apiResponse);
-                        return errors;
+                        var validationErrors = JsonConvert.DeserializeObject<List<Error>>(apiResponse);
+                        return validationErrors;
                     }
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
-                    _logger.LogError(e, "Fault validating answers", answers);
+                    _logger.LogError(e, "Error validating answers", answers);
                     throw;
                 }
 
