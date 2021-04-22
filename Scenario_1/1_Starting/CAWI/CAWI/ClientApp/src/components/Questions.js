@@ -27,9 +27,13 @@ export class Questions extends Component {
                                     </select>
                                     </td>
                                 </tr>)}
+                                <tr></tr>
+                                <tr>
+                                    <td></td>
+                                    <td height="50"><input type="submit" value="Submit" /></td>
+                                </tr>
                         </tbody>
-                    </table>
-                    <input type="submit" value="Submit" />
+                    </table>                    
                 </form>                
             </div>
         );
