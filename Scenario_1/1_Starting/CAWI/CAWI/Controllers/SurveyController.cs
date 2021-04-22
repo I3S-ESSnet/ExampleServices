@@ -88,7 +88,6 @@ namespace CAWI.Ui.Controllers
                     _logger.LogError(e, "Error validating answers", answers);
                     throw;
                 }
-
             }
         }
 
