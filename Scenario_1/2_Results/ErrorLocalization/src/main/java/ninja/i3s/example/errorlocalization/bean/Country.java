@@ -34,8 +34,6 @@ public class Country {
     @JsonProperty("code")
     public void setCode(String code) {
         this.code = code;
-    }
-    
-    
+    }    
 
 }
