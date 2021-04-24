@@ -3,10 +3,12 @@ package ninja.i3s.example.errorlocalization.logic;
 import java.util.ArrayList;
 
 import ninja.i3s.example.errorlocalization.bean.ErrorlocalizationValidationError;
+import ninja.i3s.example.errorlocalization.configuration.CodeListSettings;
+import ninja.i3s.example.errorlocalization.service.CountryService;
 
 public class ErrorlocalizationValidation {
 
-    public static ArrayList<ErrorlocalizationValidationError> validate(String country, String weather) {
+    public static ArrayList<ErrorlocalizationValidationError> validate(String country, String weather, CodeListSettings settings) {
 
         ErrorlocalizationValidationError error;
         //Pack response
@@ -14,7 +16,8 @@ public class ErrorlocalizationValidation {
         
         //Rule 1 : check if the country is in the allowed list              
                 
-        var euCountry = new EuCountry(country);
+        CountryService countryService = new CountryService(settings);
+        var euCountry = new EuCountry(country, countryService);
         if (!euCountry.isValid()) {
             error = new ErrorlocalizationValidationError("country not allowed", "001", "Country not in the list");
             errors.add(error);
