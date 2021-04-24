@@ -1,4 +1,4 @@
-package ninja.i3s.example.errorlocalization.controller;
+package ninja.i3s.example.errorlocalization.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -8,13 +8,13 @@ import org.springframework.context.annotation.Configuration;
 public class CodeListSettings {
 
     
-    private String host;
+    private String url;
 
-    public void setHost(String host) {
-        this.host = host;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public String getHost(){
-        return host;
+    public String getUrl(){
+        return url;
     }
 }
