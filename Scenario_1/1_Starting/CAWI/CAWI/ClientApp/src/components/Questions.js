@@ -15,7 +15,7 @@ export class Questions extends Component {
         return (
             <div>
                 <form onSubmit={this.props.handleSubmit}>
-                    <table>
+                    <table class="table">
                         <tbody>
                             {this.props.questions.map(question =>
                                 <tr key={question.variable}>
