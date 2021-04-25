@@ -22,7 +22,7 @@ When a survey participant has submitted her response, the outcome of answer vali
 
 Is a service that flags errors in the answer collection.
 
-<img src="./resources/scenario_1_start.jpg" width=400>
+<img src="./resources/scenario_1_start.jpg" width=500>
 
 Code is found here: [Code Scenario 1](./Scenario_1)
 
@@ -33,7 +33,7 @@ Identified flaw:
 #### S1 Goals
 
 <!-- ![Scenario 1 Goal](./resources/scenario_1_goal.png) -->
-<img src="./resources/scenario_1_goal.png" width=400>
+<img src="./resources/scenario_1_goal.png" width=500>
 
 To follow **principle of metadata driven systems**, we see that each of the two services needs to manage the same meta data. By extracting this function we can make each service be more accomodated towards single responsibility. Thus lowering the manual labour keeping two systems up to date with the same data.
 
@@ -60,7 +60,7 @@ Identified flaws:
 * maintenance of duplicate/similar systems
 
 #### S2 Result
-<img src="./resources/scenario_2_goal.jpg" width=400>
+<img src="./resources/scenario_2_goal.jpg" width=500>
 
 By extracting a service for handling meta data regarding Statistical programs we can minimize the duplication of manual setup within each service. By making them context aware we can increase utilization rate of each service and still maintain single responsibility principle.
 
@@ -74,7 +74,7 @@ The services are now context aware but the integration pattern between the servi
 
 Within statistical production, multiple patterns will be used to solve different problems, for example, an event-driven approach may be suitable for metadata service integrations while point-to-point may be suitable for integrations where large datasets are exchanged.
 
-<img src="./resources/scenario_3_goal.jpg" width=400>
+<img src="./resources/scenario_3_goal.jpg" width=500>
 
 ### Scenario 4 - Containers, multiple environments
 
@@ -84,7 +84,7 @@ We start with an instance of each service as described in scenario 4. However we
 
 #### S4 Result
 
-<img src="./resources/scenario_4_goal.jpg" width=400>
+<img src="./resources/scenario_4_goal.jpg" width=500>
 
 The goal is to be able to scale up production and have the possibility move to a cloud based platform. Simplify sharing of the services. Dependencies on underlying technology and infrastructure are eliminated which increases the number of hosting options for service consumers. This allows for cloud hosting as well as flexible on-premise infrastructure alternatives.
 
