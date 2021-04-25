@@ -13,8 +13,7 @@ public class Country {
     public Country(String country, String code) {
         this.country = country;
         this.code = code;
-    }
-    
+    }    
     
    @JsonProperty("country")
     public String getCountry() {
@@ -35,7 +34,4 @@ public class Country {
     public void setCode(String code) {
         this.code = code;
     }
-    
-    
-
 }
