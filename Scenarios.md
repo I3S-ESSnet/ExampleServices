@@ -8,19 +8,26 @@ Each scenario is a possible starting point of the evolution process of a system.
 
 #### S1 Starting point
 
-We start with two services (CAWI, ErrorLocalization). CAWI is a web based tool for taking surveys. ErrorLocalization is a service that can flag answers as faulty based on a rule set. The services or application do not know of each other, each has implemented its own implementation of a code list. Therefor each service need logic for handling of the codes lists used.
+We start with two services (CAWI and ErrorLocalization). CAWI is a web based tool for taking surveys. ErrorLocalization is a service that can flag answers as faulty based on a rule set. CAWI knows of ErroLocalization and uses its web-api for validation the answers. Each application har its own set of code lists.  Therefor each service need logic for handling of the codes lists used.
 
 ##### CAWI
 
-Is a `tbc description of`
+A web based tool for taking survey answers regarding weather within EU. The datasource for eu countries is a local json-file.
+When a survey participant has submitted her response, the outcome of answer validation is printed on the web form. The validation is handled through a web api call to the ErrorLocalization service.
 
 ##### ErrorLocalization
 
 Is a service that flags errors in the answer collection.
 
-![Scenario 1 start](./resources/scenario_1_start.jpg)
+<img src="./resources/scenario_1_start.jpg" width=400>
 
 Code is found here: [Code Scenario 1](./Scenario_1)
+
+``` text
+Identified issue
+
+Having duplication of code lists results in added administrative costs with risk of data inconsistency between systems. Resulting in errors and manual labour.
+```
 
 #### S1 Goals
 
