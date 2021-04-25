@@ -1,8 +1,11 @@
 # Scenarios
 
+TODO: why this repository
+TODO: how to use this repository
+
 ## Evolution of a system architecture
 
-Each scenario is a possible starting point of the evolution process of a system. Starting off with a basic architecture advancing to more sofisticated.
+Each scenario is a possible starting point of the evolution process of a system. Starting off with a basic architecture advancing to a more sofisticated architecture.
 
 ### Scenario 1 - From disconnected services to connected metadata driven
 
@@ -23,21 +26,20 @@ Is a service that flags errors in the answer collection.
 
 Code is found here: [Code Scenario 1](./Scenario_1)
 
-``` text
-Identified issue
-
-Having duplication of code lists results in added administrative costs with risk of data inconsistency between systems. Resulting in errors and manual labour.
-```
+Identified flaw:
+* Duplication of datasets
+* Risk of inconsistency between systems
 
 #### S1 Goals
 
-![Scenario 1 Goal](./resources/scenario_1_goal.png)
+<!-- ![Scenario 1 Goal](./resources/scenario_1_goal.png) -->
+<img src="./resources/scenario_1_goal.png" width=400>
 
-To follow principle of metadata driven systems, we see that each of the two services needs to manage the same meta data. By extracting this function we can make each service be more accomodated towards single responsibility. Thus lowering the manual labour keeping two systems up to date with the same data.
+To follow **principle of metadata driven systems**, we see that each of the two services needs to manage the same meta data. By extracting this function we can make each service be more accomodated towards single responsibility. Thus lowering the manual labour keeping two systems up to date with the same data.
 
 #### S1 Thought process
 
-By extracting the handling of metadata to separate service we create a single point of thruth regarding data consistency.
+By extracting the handling of metadata to separate service we create a single point of thruth regarding data consistency.  We create the service CodeList for maintaining common codelists used in services.
 
 #### S1 Result
 
@@ -45,29 +47,47 @@ Having a disconnected state of applications the manual labour to keep data up to
 
 ### Scenario 2 - Context Aware
 
-`TBC`
 We have the three services CAWI, CodeList, and ErrorLoc but we have identified they use the same meta information in some regard. The dupication of information is therefore a fact. By making the services context aware we can extract logic regarding setting up dupicate meta information in the applications.
-
-![Scenario 2 overview](./resources/tbd.jpg)
 
 #### S2 Starting point
 
-We start off by having three services; CAWI, CodeList and ErrorLoc as described above. However each service is defined for a specific statistical program, therefor a few implementations of similar services starts to pop up with the similar implementations.
+We have the three services CAWI, CodeList, and ErrorLoc. The current CAWI-application only handles weather surveys, if we need another typ of survey the risk of duplicating the services is high. We have identified they use the same meta information in some regard, so the duplication of information is therefore a fact. By making the services context aware we can extract logic regarding setting up duplicate meta information in the applications.
 
-#### S2 Goals
+Identified flaws:
 
-By extracting a service for handling meta data regarding Statistical programs we can minimize the duplication of manual setup within each service.
+* duplication of code
+* duplication of metadata
+* maintenance of duplicate/similar systems
+
+#### S2 Result
+<img src="./resources/scenario_2_goal.jpg" width=400>
+
+By extracting a service for handling meta data regarding Statistical programs we can minimize the duplication of manual setup within each service. By making them context aware we can increase utilization rate of each service and still maintain single responsibility principle.
 
 ### Scenario 3 - Revisiting integration pattern
 
-![Scenario 3 overview](./resources/tbd.jpg)
-
 #### S3 Starting point
+
+The services are now context aware but the integration pattern between the services is still Point-Point. In this scenario we will change this to an event driven integration.The services are now context aware. But we now want to look into the feature service integration and implement another pattern for integration. In this case an event driven pattern with publish & subscribe.
+
+### S3 Result
+
+Within statistical production, multiple patterns will be used to solve different problems, for example, an event-driven approach may be suitable for metadata service integrations while point-to-point may be suitable for integrations where large datasets are exchanged.
+
+<img src="./resources/scenario_3_goal.jpg" width=400>
 
 ### Scenario 4 - Containers, multiple environments
 
-![Scenario 4 overview](./resources/tbd.jpg)
+#### S4 Starting point
+
+We start with an instance of each service as described in scenario 4. However we now can identify a few additional architectural driving forces. The possibility to scale out on workload is possible but technically challenging. The development environment are becoming more challenging for developers having to host multiple services on a developer machine. The need of running simultanious environments are becoming challenging.
+
+#### S4 Result
+
+<img src="./resources/scenario_4_goal.jpg" width=400>
+
+The goal is to be able to scale up production and have the possibility move to a cloud based platform. Simplify sharing of the services. Dependencies on underlying technology and infrastructure are eliminated which increases the number of hosting options for service consumers. This allows for cloud hosting as well as flexible on-premise infrastructure alternatives.
 
 ### Scenario 5, Design driven information flow
 
-![Scenario 5 overview](./resources/tbd.jpg)
+In scenario 5 we would like to show the benefits having a configurable information flow. Having the ability to design the information flow we can increase the usability of the services. If a survey does not need to use ErrorLocalization service or the ManualEditing application it should be able to configure the system so.
