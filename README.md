@@ -1,6 +1,6 @@
 # Example Services
 
-`readme should explain how to view examples, its purpose, starting point, describe the repository`
+
 
 This repository is created to help developers and architects view examples of features applied into services. The scenarios describe different states your environment could be in, and examples how to gain a more recommended state using architecture described in CSPA.
 
@@ -49,7 +49,6 @@ Identified flaw:
 
 #### S1 Goals
 
-<!-- ![Scenario 1 Goal](./resources/scenario_1_goal.png) -->
 <img src="./resources/scenario_1_goal.png" width=500>
 
 To follow **principle of metadata driven systems**, we see that each of the two services needs to manage the same meta data. By extracting this function we can make each service be more accomodated towards single responsibility. Thus lowering the manual labour keeping two systems up to date with the same data.
@@ -77,6 +76,7 @@ Identified flaws:
 * maintenance of duplicate/similar systems
 
 #### S2 Result
+
 <img src="./resources/scenario_2_goal.jpg" width=500>
 
 By extracting a service for handling meta data regarding Statistical programs we can minimize the duplication of manual setup within each service. By making them context aware we can increase utilization rate of each service and still maintain single responsibility principle.
