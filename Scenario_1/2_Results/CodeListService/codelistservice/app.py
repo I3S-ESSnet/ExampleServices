@@ -9,7 +9,7 @@ def index():
 
 @app.route("/countries")
 def countries():
-    f = open("code-list.json")
+    f = open("resources/countries.json")
     data = "".join(f.readlines())
     return(Response(data, mimetype="application/json"))
 
